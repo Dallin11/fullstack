@@ -1,0 +1,38 @@
+@import "base";
+
+.register-container {
+	.input-wrapper {
+		margin-top: -35px;
+		display: flex;
+		justify-content: center;
+		height: 100vh;
+		align-items: center;
+		form {
+			display: flex;
+			flex-direction: column;
+			width: 30%;
+			background: $off-white;
+			padding: 50px;
+			border: 2px solid $primary-red;
+			input {
+				margin-bottom: 20px;
+				border: 2px solid $primary-red;
+				height: 5vh;
+			}
+			btn-wrapper {
+				display: flex;
+				justify-content: space-between;
+				button {
+					width: 40%;
+					outline: none;
+					background: white;
+					border: none;
+					padding: 7px;
+					&:hover {
+						@include btn-hover;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+<register class="register-container">
+	<section class="input-wrapper">
+		<form ng-submit="register(user)">
+			<input type="text" placeholder="first name" ng-model="user.firstname">
+			<input type="text" placeholder="last name" ng-model="user.lastname">
+			<input type="email" placeholder="example@email.com" ng-model="user.email">
+			<input type="password" placeholder="password" ng-model="user.password">
+			<btn-wrapper>
+				<button type="submit">Create</button>
+			</btn-wrapper>
+		</form>
+	</section>
+</register>

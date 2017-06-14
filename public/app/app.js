@@ -11,7 +11,12 @@ angular.module('app', ['ui.router'])
 			.state('login', {
 				url: '/login',
 				templateUrl: './app/views/login.html',
-				controller: 'loginCtrl'
+				controller: 'authCtrl'
+			})
+			.state('register', {
+				url: '/register',
+				templateUrl: './app/views/register.html',
+				controller: 'authCtrl'
 			})
 
 
