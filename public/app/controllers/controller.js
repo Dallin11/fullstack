@@ -1,7 +1,13 @@
-angular.module('app').controller('authCtrl', ($scope, authService) => {
+angular.module('app').controller('authCtrl', ($scope, authService, $state) => {
 
-	$scope.login = (newUser) => {
-		console.log("login", newUser)
+	$scope.login = (user) => {
+		authService.loginUser(user).then(res => {
+			if(res.data.length > 0) {
+				$state.go('home')
+			} else {
+				alert('Too Bad')
+			}
+		})
 	}
 
 	$scope.register = (user) => {
@@ -9,4 +15,5 @@ angular.module('app').controller('authCtrl', ($scope, authService) => {
 			console.log('Controller Promise', res)
 		})
 	}
+
 })

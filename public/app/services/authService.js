@@ -8,4 +8,12 @@ angular.module('app').service('authService', function($http){
 		})
 	}
 
+	this.loginUser = (user) => {
+		return $http({
+			url: '/api/login-user',
+			method: 'POST',
+			data: user
+		})
+	}
+
 })

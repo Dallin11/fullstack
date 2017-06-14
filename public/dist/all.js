@@ -19,10 +19,16 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
 });
 'use strict';
 
-angular.module('app').controller('authCtrl', function ($scope, authService) {
+angular.module('app').controller('authCtrl', function ($scope, authService, $state) {
 
-	$scope.login = function (newUser) {
-		console.log("login", newUser);
+	$scope.login = function (user) {
+		authService.loginUser(user).then(function (res) {
+			if (res.data.length > 0) {
+				$state.go('home');
+			} else {
+				alert('Too Bad');
+			}
+		});
 	};
 
 	$scope.register = function (user) {
@@ -38,6 +44,14 @@ angular.module('app').service('authService', function ($http) {
 	this.registerUser = function (user) {
 		return $http({
 			url: '/api/create-user',
+			method: 'POST',
+			data: user
+		});
+	};
+
+	this.loginUser = function (user) {
+		return $http({
+			url: '/api/login-user',
 			method: 'POST',
 			data: user
 		});

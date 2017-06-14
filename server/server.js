@@ -1,6 +1,6 @@
 const cors = require('cors');
 const express = require('express');
-//const massive = require('massive');
+const massive = require('massive');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
@@ -12,22 +12,42 @@ const port = 3030;
 app.use(bodyParser.json());
 app.use(express.static(`${__dirname}./../public`));
 app.use(cors());
-//app.use(session({
-//	secret: process.env.SESSION_SECRET,
-//	saveUninitialized: false,
-//	resave: false
-//}));
-//app.use(passport.initialize());
-//app.use(passport.session());
 
 //// MASSIVE DB ==========================================
-
+massive({
+	host: 'localhost',
+	port: 5432,
+	database: 'postgres',
+	user: 'postgres',
+	password: ''
+}).then(db => {
+	app.set('db', db);
+});
 
 
 // POST ENDPOINTS ==========================
 app.post('/api/create-user', (req, res, next) => {
-	console.log(req.body)
+	const { firstname, lastname, email, password } = req.body
+
+	req.app.get('db').createUser([ firstname, lastname, email, password]).then(res => {
+		console.log(res)
+	})
 })
+
+app.post('/api/login-user', (req, res, next) =>{
+	const { email, password } = req.body;
+	req.app.get('db').loginUser([email, password]).then(response => {
+		//delete response.password;
+		console.log(response)
+		if(response.length > 0) {
+			res.status(200).send(response)
+		} else {
+			res.status(404).send('User Not Found')
+		}
+	});
+})
+
+
 
 
 // LISTENING ON PORT ===============================
