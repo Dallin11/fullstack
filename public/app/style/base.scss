@@ -1,0 +1,12 @@
+$primary-red: #b96c6c;
+$off-white: #efefef;
+$hover-btn: #7d6767;
+
+
+@mixin btn-hover {
+	transform: scale(.9);
+	transition: all .3s;
+	background: $hover-btn;
+	color: white;
+	cursor: pointer;
+}

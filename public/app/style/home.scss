@@ -1,3 +1,5 @@
+@import "base";
+
 .home-container {
 	height: 100vh;
 	width: 100vw;
@@ -24,7 +26,7 @@
 			p {
 				border: 3px solid black;
 				padding: 10px;
-				background: #b96c6c;
+				background: $primary-red;
 				align-self: center;
 			}
 	}

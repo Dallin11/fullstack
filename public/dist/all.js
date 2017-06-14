@@ -9,9 +9,15 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
 		templateUrl: './app/views/home.html'
 	}).state('login', {
 		url: '/login',
-		templateUrl: './app/views/login.html'
+		templateUrl: './app/views/login.html',
+		controller: 'loginCtrl'
 	});
 });
 'use strict';
 
-angular.module('app').controller('controller', function ($scope) {});
+angular.module('app').controller('loginCtrl', function ($scope) {
+
+	$scope.login = function (newUser) {
+		console.log(newUser);
+	};
+});
