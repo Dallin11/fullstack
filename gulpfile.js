@@ -12,17 +12,15 @@ const normalizePath = `${basePath}/style/normalize.css`;
 const paths = {
 	jsSrc: [`${basePath}/app.js`, `${basePath}/**/*.js`],
 	scssSrc: [`${normalizePath}`, `${basePath}/directives/**/*.scss`, `${basePath}/style/*.scss`],
-	//server: './server/server.js'
+	server: './server/server.js'
 };
-
-// DEFINE TASKS ===================================
-
-//gulp.task('server', () => {
-//	nodemon({
-//		'script': paths.server
-//	})
-//		.pipe(server.start())
-//});
+//
+//// DEFINE TASKS ===================================
+gulp.task('server', () => {
+	nodemon({
+		'script': paths.server
+	})
+});
 
 gulp.task('js-bundle', () =>  {
 	gulp.src(paths.jsSrc)
@@ -49,5 +47,5 @@ gulp.task('watch', () => {
 	gulp.watch(paths.jsSrc, ['js-bundle']);
 	gulp.watch(paths.scssSrc, ['scss-bundle']);
 });
-gulp.task('default', ['watch', 'js-bundle','scss-bundle']);
+gulp.task('default', ['watch', 'js-bundle','scss-bundle', 'server']);
 //server needs to be added eventually
